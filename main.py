@@ -1,6 +1,6 @@
 # import required modules
 from flask import Flask, render_template, request
-
+from src.detect import process_image
 # create flask app
 app = Flask(__name__)
 
@@ -17,7 +17,7 @@ def upload():
     filepath = f'static/temp/{file.filename}'
     file.save(filepath) # save to directory
     process_image(filepath)
-    
+
     # return server url to client
     return f"{request.url_root}{filepath}"
 
